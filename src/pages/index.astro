@@ -6,23 +6,23 @@ import MoleculeHeading from '../components/molecules/MoleculeHeading.astro'
 import MoleculeHeader from '../components/molecules/MoleculeHeader.astro'
 import MoleculeBookingBar from '../components/molecules/MoleculeBookingBar.astro'
 import OrganismLocationBanner from '../components/organisms/OrganismLocationBanner.astro'
+import AtomButton from '../components/atoms/AtomButton.astro'
 ---
 
 <Layout>
   <MoleculeBanner />
   <MoleculeHeader />
   <div class="h-full w-full flex flex-col items-center justify-center mb-80
-    max-sm:bg-[url(images/hero.jpg)] max-sm:bg-no-repeat max-sm:bg-size-[1360px_100%] max-sm:bg-center
     md:mb-30">
-    <img class="hidden md:block hero" class="hero" src={hero.src} alt="" fetchpriority="high" />
+    <img class="hero object-cover" class="hero" src={hero.src} alt="" fetchpriority="high" />
     <MoleculeHeading 
       subheading='Step Inside Dakota' 
       heading='Where Sophistication Comes to Stay' 
       level={ 1 }>
     </MoleculeHeading>
-    <div class="absolute w-[calc(100%-48px)] md:w-[calc(100%-200px)]
-      max-sm:-translate-y-1/2 max-sm:-bottom-1/2
-      md:bottom-0">
+    <div class="absolute w-[calc(100%-48px)]
+      max-sm:-bottom-1/3
+      md:bottom-0 md:w-[calc(100%-200px)]">
       <MoleculeBookingBar />
     </div>
   </div>
@@ -33,6 +33,16 @@ import OrganismLocationBanner from '../components/organisms/OrganismLocationBann
       level={ 2 }>
     </MoleculeHeading>
     <OrganismLocationBanner />
+  </section>
+  <section class="pb-10">
+    <div class="text-center px-8 mx-auto flex flex-col items-center gap-11">
+      <h3 class="text-3xl md:text-5xl text-cream">Bold design. <br>Warm hospitality. <br><span class="text-gold">Unmistakably Dakota.</span></h3>
+      <p class="font-serif font-light md:max-w-[444px]">At Dakota Hotels, we don't just offer a place to stay — we create an atmosphere. Every space is curated with precision: moody interiors, tactile textures, and an effortless sense of cool.</p>
+      <div class="flex gap-5">
+        <AtomButton variant='secondary'>Discover Rooms</AtomButton>
+        <AtomButton variant='primary'>Make a Reservation</AtomButton>
+      </div>
+    </div>
   </section>
 </Layout>
 
