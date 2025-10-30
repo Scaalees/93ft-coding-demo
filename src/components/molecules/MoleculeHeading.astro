@@ -1,0 +1,62 @@
+---
+import Heading from '../atoms/AtomHeading.astro'
+import Subheading from '../atoms/AtomSubheading.astro'
+
+interface Props {
+  subheading?: string
+  heading: string
+  level?: number
+  align?: 'left' | 'center' | 'right'
+  spacing?: string
+  headingSize?: string
+  subheadingSize?: string
+  headingColor?: string
+  subheadingColor?: string
+  animate?: boolean
+}
+
+const {
+  subheading,
+  heading,
+  level = 2,
+  align = 'center',
+  spacing = 'space-y-2',
+  headingSize = 'text-3xl md:text-5xl',
+  subheadingSize = 'text-base md:text-lg',
+  headingColor = 'text-cream',
+  subheadingColor = 'text-gold',
+  animate = true
+} = Astro.props
+
+const Tag = `h${level}`
+---
+
+<div
+  class={`text-${align} ${spacing} ${
+    animate ? 'fade-slide-in' : ''
+  }`}
+>
+  {subheading && (
+    <div class={`${subheadingSize} ${subheadingColor}`}>
+      <Subheading>{subheading}</Subheading>
+    </div>
+  )}
+  <Tag class:list={`${headingSize} ${headingColor}`}>
+    <Heading>{heading}</Heading>
+  </Tag>
+</div>
+
+<style>
+  .fade-slide-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlideIn 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeSlideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+import close from '../../assets/images/close.svg'
+---
+
+<div
+  id="promo-banner"
+  class="fixed z-10 bg-gold font-special uppercase text-dark text-center py-3 text-[10px] tracking-wide w-full md:text-[11px]"
+>
+  Discover Our Latest Hotel Packages <u>Here</u>
+  <img
+    src={close.src}
+    width="8"
+    alt="Close"
+    class="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
+    id="close-banner"
+  />
+</div>
+
+<script>
+  const banner = document.getElementById('promo-banner')
+  const closeBtn = document.getElementById('close-banner')
+
+  if (closeBtn && banner) {
+    const setHeight = () => {
+      document.documentElement.style.setProperty(
+        '--banner-height',
+        `${banner.offsetHeight}px`
+      )
+    }
+
+    setHeight()
+
+    window.addEventListener('resize', setHeight)
+
+    closeBtn.addEventListener('click', () => {
+      banner.classList.add('banner-hide')
+      document.documentElement.style.setProperty('--banner-height', '0px')
+      const t = parseFloat(getComputedStyle(banner).transitionDuration) * 1000 || 300
+      setTimeout(() => banner.remove(), t)
+    })
+  }
+</script>
+
+<style>
+  #promo-banner {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .banner-hide {
+    opacity: 0;
+    visibility: hidden;
+  }
+</style>

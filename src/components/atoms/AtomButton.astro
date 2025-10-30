@@ -1,0 +1,25 @@
+---
+interface Props {
+  link?: string,
+  variant?: 'primary' | 'secondary',
+  size?: 'sm' | 'md' | 'lg',
+}
+
+const { link = '', variant = 'primary', size = 'md' } = Astro.props
+
+const variants: Record<string, string> = {
+  primary: 'bg-gold text-dark border-transparent border hover:bg-transparent hover:text-cream hover:border-gold transition-colors',
+  secondary: 'bg-transparent text-cream border border-gold'
+}
+
+const sizes = {
+  sm: 'text-xs px-3 py-2',
+  md: 'text-sm px-5 py-3.5',
+  lg: 'text-base px-11 py-7.5'
+}
+
+const Tag = link ? 'a' : 'span'
+---
+<Tag href={link} class:list={`uppercase text-center ${variants[variant]} ${sizes[size]}`}>
+  <slot />
+</Tag>

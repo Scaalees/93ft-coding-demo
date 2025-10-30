@@ -1,29 +1,55 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import background from '../assets/background.svg';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from '../layouts/Layout.astro'
+import hero from '../assets/images/desktop/hero.jpg'
+import MoleculeBanner from '../components/molecules/MoleculeBanner.astro'
+import MoleculeHeading from '../components/molecules/MoleculeHeading.astro'
+import MoleculeHeader from '../components/molecules/MoleculeHeader.astro'
+import MoleculeBookingBar from '../components/molecules/MoleculeBookingBar.astro'
+import OrganismLocationBanner from '../components/organisms/OrganismLocationBanner.astro'
 ---
 
 <Layout>
-  <div class="h-full flex justify-center items-center">
-    <img id="background" src={background.src} alt="" fetchpriority="high" />
-    <div class="text-center">
-      <h1 class="text-4xl mb-2 font-bold">93FT DEMO</h1>
-      <p class="font-serif">Once Figma works again I can start coding...</p>
+  <MoleculeBanner />
+  <MoleculeHeader />
+  <div class="h-full w-full flex flex-col items-center justify-center mb-80
+    max-sm:bg-[url(images/hero.jpg)] max-sm:bg-no-repeat max-sm:bg-size-[1360px_100%] max-sm:bg-center
+    md:mb-30">
+    <img class="hidden md:block hero" class="hero" src={hero.src} alt="" fetchpriority="high" />
+    <MoleculeHeading 
+      subheading='Step Inside Dakota' 
+      heading='Where Sophistication Comes to Stay' 
+      level={ 1 }>
+    </MoleculeHeading>
+    <div class="absolute w-[calc(100%-48px)] md:w-[calc(100%-200px)]
+      max-sm:-translate-y-1/2 max-sm:-bottom-1/2
+      md:bottom-0">
+      <MoleculeBookingBar />
     </div>
   </div>
+  <section class="hidden md:block">
+    <MoleculeHeading 
+      subheading='6 Hotels. One Luxury Experience.' 
+      heading='Discover our Locations' 
+      level={ 2 }>
+    </MoleculeHeading>
+    <OrganismLocationBanner />
+  </section>
 </Layout>
 
-<style>
-  #background {
-    position: fixed;
+<style is:global>
+  .hero {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
-    filter: blur(100px);
+    transition: 0.5s all;
+  }
+
+  .loaded .hero {
+    @media (width >= 48rem) {
+      transform: scale(0.9);
+    }
   }
 </style>

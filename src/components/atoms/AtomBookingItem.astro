@@ -1,0 +1,32 @@
+---
+import caret from '../../assets/images/caret.svg'
+
+interface Props {
+  label: string,
+  placeholder: string
+  dropdown?: boolean
+}
+const { label, placeholder, dropdown = false } = Astro.props
+---
+<div class="bg-white border-b-1 border-grey p-4 flex flex-col justify-center flex-1 cursor-pointer
+  md:border-r-1 md:border-b-0
+  lg:pt-[19px] lg:pb-[21px] lg:px-6.5">
+  <div class="uppercase font-light tracking-wide text-grey text-xs mb-2.5
+    md:mb-3">
+    { label }
+  </div>
+  <div class="font-serif flex items-center gap-1 text-dark"
+  >
+    { placeholder }
+
+    {dropdown && (
+      <img
+        src={caret.src}
+        width="8"
+        height="7"
+        alt="Dropdown caret"
+        class="ml-2 transition-transform duration-200 group-hover:rotate-180"
+      />
+    )}
+  </div>
+</div>

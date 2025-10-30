@@ -1,48 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap");
 
 @font-face {
-  font-family: "GT-America";
+  font-family: "GT-America-Extended";
   font-style: normal;
-  font-weight: 200;
+  font-weight: 100;
   font-display: swap;
-  src: url("/fonts/GT-America-Standard-Light-Trial.woff2") format("woff2");
+  src: url("/fonts/GT-America-Extended-Thin-Trial.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "GT-America";
+  font-family: "GT-America-Extended";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/GT-America-Standard-Regular-Trial.woff2") format("woff2");
+  src: url("/fonts/GT-America-Extended-Regular-Trial.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "GT-America";
+  font-family: "Domaine-Sans";
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-display: swap;
-  src: url("/fonts/GT-America-Standard-Medium-Trial.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "GT-America";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("/fonts/GT-America-Standard-Bold-Trial.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "GT-America";
-  font-style: normal;
-  font-weight: 900;
-  font-display: swap;
-  src: url("/fonts/GT-America-Standard-Black-Trial.woff2") format("woff2");
+  src: url("/fonts/test-domaine-sans-text-regular.woff2") format("woff2");
 }
 
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "GT-America", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "GT-America-Extended", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-serif: "Newsreader", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-special: "Domaine-Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --color-dark: #141317;
+  --color-cream: #FFF8EE;
+  --color-gold: #D3BF89;
+  --color-grey: #8C8C8C;
 }

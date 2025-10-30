@@ -1,0 +1,51 @@
+---
+import logo from '../../assets/images/desktop/logo.svg'
+
+interface Props {
+  duration?: number // milliseconds
+}
+
+const { duration = 1000 } = Astro.props
+---
+
+<div id="site-loader" class="loader-visible">
+  <div class="bg-dark flex items-center justify-center min-h-screen">
+    <img src={logo.src} alt="Site logo" fetchpriority="high" class="w-[320px] md:w-[500px]" width="500" />
+  </div>
+</div>
+
+<script define:vars={{ duration }}>
+  window.addEventListener('load', () => {
+    const TIME_MS = duration
+    const loader = document.getElementById('site-loader')
+    if (!loader) return
+
+    setTimeout(() => {
+      loader.classList.add('loader-hidden')
+      setTimeout(() => {
+        loader.remove()
+        window.dispatchEvent(new CustomEvent('loader:complete'))
+      }, 500)
+    }, TIME_MS)
+  })
+</script>
+
+<style>
+  #site-loader {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: var(--color-dark);
+    z-index: 9999;
+    transition: opacity 300ms ease, visibility 300ms ease;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  #site-loader.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+</style>

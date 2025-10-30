@@ -1,0 +1,15 @@
+---
+import AtomBookingItem from "../atoms/AtomBookingItem.astro";
+import AtomButton from "../atoms/AtomButton.astro";
+
+
+---
+<form class="grid md:grid-cols-5">
+  <AtomBookingItem label="location" placeholder="Select your hotel" dropdown={true} />
+  <AtomBookingItem label="check in / check out" placeholder="Add dates" dropdown={true} />
+  <AtomBookingItem label="guests" placeholder="1 Room, 2 Guests" />
+  <AtomBookingItem label="got a promo code?" placeholder="Enter Code" />
+  <AtomButton size="lg">
+    Check Availability
+  </AtomButton>
+</form>

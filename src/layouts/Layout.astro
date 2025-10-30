@@ -1,5 +1,6 @@
 ---
-import '../styles/global.css'  
+import '../styles/global.css'
+import OrganismPageLoader from '../components/organisms/OrganismPageLoader.astro'
 ---
 
 <!doctype html>
@@ -11,8 +12,15 @@ import '../styles/global.css'
     <meta name="generator" content={Astro.generator} />
     <title>93FT Demo</title>
   </head>
-  <body>
+  <body class="bg-dark text-cream">
+    <OrganismPageLoader />
     <slot />
+
+    <script>
+      window.addEventListener('loader:complete', () => {
+        document.body.classList.add('loaded')
+      })
+    </script>
   </body>
 </html>
 

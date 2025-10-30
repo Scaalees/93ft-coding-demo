@@ -1,0 +1,108 @@
+---
+import logo from '../../assets/images/desktop/logo.svg'
+import caret from '../../assets/images/caret.svg'
+import AtomButton from '../atoms/AtomButton.astro'
+import AtomMobileNavItem from '../atoms/AtomMobileNavItem.astro'
+---
+
+<header
+  class="fixed top-0 left-0 w-full bg-dark px-6 py-4 md:px-10 md:py-5 transition-transform duration-300 z-50"
+  style="transform: translateY(var(--banner-height, 0));"
+>
+  <nav class="flex items-center justify-between">
+    <!-- Mobile: Hamburger -->
+    <button id="menu-toggle" class="md:hidden flex items-center flex-col justify-between w-6 h-5 z-10 focus:outline-none">
+      <svg id="hamburger" class="absolute opacity-100" width="24" height="10" viewBox="0 0 24 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line y1="1" x2="24" y2="1" stroke="#D3BF89"/>
+        <line y1="10" x2="24" y2="10" stroke="#D3BF89"/>
+      </svg>
+      <svg id="close" class="absolute opacity-0" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0.5 0.5L17.4706 17.4706" stroke="#D3BF89" stroke-linecap="round"/>
+        <path d="M17.4707 0.5L0.500141 17.4706" stroke="#D3BF89" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <!-- Center Logo -->
+    <a href="/" class="md:hidden absolute left-1/2 -translate-x-1/2">
+      <img src={logo.src} alt="Dakota Hotels" width="78" class="mx-auto" />
+    </a>
+
+    <!-- Desktop Nav -->
+    <ul
+      id="desktop-nav"
+      class="hidden md:flex justify-between items-center gap-10 uppercase tracking-wider text-xs text-cream w-full"
+    >
+      <li class="flex gap-2.5 items-center hover:text-gold transition-colors cursor-pointer">
+        Explore our Hotels
+        <img src={caret.src} width="8" height="7" />
+      </li>
+      <li class="hover:text-gold transition-colors cursor-pointer">Vouchers</li>
+      <li class="mx-auto">
+        <a href="/">
+          <img src={logo.src} alt="Dakota Hotels" width="104" />
+        </a>
+      </li>
+      <li class="flex gap-2.5 items-center hover:text-gold transition-colors cursor-pointer">
+        The Grill
+        <img src={caret.src} width="8" height="7" />
+      </li>
+      <li>
+        <AtomButton>Book a Room</AtomButton>
+      </li>
+    </ul>
+  </nav>
+
+  <div
+    id="mobile-menu"
+    class="md:hidden fixed h-svh inset-0 bg-dark text-cream uppercase text-center flex flex-col items-center justify-center gap-6 tracking-wider text-sm  pointer-events-none transition-opacity duration-300 opacity-0 -translate-x-100vw"
+  >
+    <ul>
+      <AtomMobileNavItem>
+        Rooms
+      </AtomMobileNavItem>
+      <AtomMobileNavItem subMenu={true}>
+        Drink & Dine
+      </AtomMobileNavItem>
+      <AtomMobileNavItem subMenu={true}>
+        Meetings & Events
+      </AtomMobileNavItem>
+      <AtomMobileNavItem>
+        Festive
+      </AtomMobileNavItem>
+      <AtomMobileNavItem>
+        Packages
+      </AtomMobileNavItem>
+      <AtomMobileNavItem>
+        Vouchers
+      </AtomMobileNavItem>
+      <li>
+        <AtomButton>Book a Room</AtomButton>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle')
+  const menu = document.getElementById('mobile-menu')
+  const hamburger = document.getElementById('hamburger')
+  const close = document.getElementById('close')
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('opacity-0')
+      menu.classList.toggle('pointer-events-none', !isOpen)
+
+      if (isOpen) {
+        hamburger?.classList.remove('opacity-0')
+        hamburger?.classList.add('opacity-100')
+      }
+      else {
+        hamburger?.classList.remove('opacity-100')
+        hamburger?.classList.add('opacity-0')
+      }
+
+      close?.classList.toggle('opacity-0')
+    })
+  }
+</script>

@@ -1,0 +1,14 @@
+---
+import chevron from '../../assets/images/chevron.svg'
+
+interface Props {
+  subMenu?: boolean
+}
+const { subMenu = false } = Astro.props
+---
+<li class="flex justify-between uppercase font-light text-cream tracking-wide">
+  <slot />
+  {subMenu && (
+    <img src={chevron.src} />
+  )}
+</li>

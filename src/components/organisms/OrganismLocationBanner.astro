@@ -1,0 +1,94 @@
+---
+import MoleculeLocationCard from '../molecules/MoleculeLocationCard.astro'
+---
+
+<section id="location-scroll" class="relative overflow-hidden">
+  <div class="horizontal-wrapper flex w-[200vw]">
+    <div class="flex w-full justify-around items-center">
+      <MoleculeLocationCard image="/images/newcastle.jpg" location="Newcastle" />
+      <MoleculeLocationCard image="/images/manc.jpg" location="Manchester" />
+      <MoleculeLocationCard image="/images/leeds.jpg" location="Leeds" />
+    </div>
+    <div class="flex w-full justify-around items-center">
+      <MoleculeLocationCard image="/images/edinburgh.jpg" location="Edinburgh" />
+      <MoleculeLocationCard image="/images/glasgow.png" location="Glasgow" />
+      <MoleculeLocationCard image="/images/euro-central.jpg" location="Eurocentral" />
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  let scrollTween: gsap.core.Tween | null = null
+
+
+  const initScroll = () => {
+    const section = document.querySelector('#location-scroll')
+    const wrapper = section.querySelector('.horizontal-wrapper')
+
+    if (!section || !wrapper) return
+
+    scrollTween = gsap.to(wrapper, {
+      xPercent: -50,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: '+=200%',
+        scrub: true,
+        pin: true,
+        anticipatePin: 1,
+      },
+    })
+  }
+
+  const killScroll = () => {
+    if (scrollTween) {
+      scrollTween.scrollTrigger?.kill()
+      scrollTween.kill()
+      scrollTween = null
+    }
+  }
+
+  const checkScreenSize = () => {
+    if (window.innerWidth >= 768) {
+      if (!scrollTween) initScroll()
+    } else {
+      killScroll()
+    }
+  }
+
+  checkScreenSize()
+
+  let resizeTimer: number | undefined
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer)
+    resizeTimer = window.setTimeout(checkScreenSize, 250)
+  })
+</script>
+
+<style>
+ #location-scroll {
+    height: 100vh;
+
+    @media (max-width: 767px) {
+      height: auto;
+    }
+  }
+
+  .horizontal-wrapper {
+    display: flex;
+    height: 100%;
+  }
+
+  .horizontal-wrapper > div {
+    flex: 0 0 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+</style>
